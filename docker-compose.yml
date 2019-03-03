@@ -1,0 +1,48 @@
+version: "2.1"
+services:
+  redis:
+    image: "redis:alpine"
+    ports:
+      - '6379:6379'
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+      args:
+        PACKAGE_PATH: ./api
+        WORKING_DIR: /src/api
+    env_file:
+      - ./common.env
+    volumes:
+      - .:/src
+      - /src/api/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+      migrate-api:
+        condition: service_started
+    command: ['npm', 'run', 'start-dev']
+    ports:
+      - '8000:8000'
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+      args:
+        PACKAGE_PATH: ./webapp
+        WORKING_DIR: /src/webapp
+    volumes:
+      - .:/src
+      - /src/webapp/node_modules
+    command: ['npm', 'run', 'start-dev']
+    ports:
+      - '3000:3000'
+    depends_on:
+      api:
+        condition: service_started
+

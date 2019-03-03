@@ -1,0 +1,17 @@
+{
+  "name": "lattice-webapp-api",
+  "version": "1.0.0",
+  "description": "This is an api for a sample app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Sinnes",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "^17.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
+  }
+}
