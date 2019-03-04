@@ -22,10 +22,8 @@ services:
       - .:/src
       - /src/api/node_modules
     depends_on:
-      postgres:
+      redis:
         condition: service_healthy
-      migrate-api:
-        condition: service_started
     command: ['npm', 'run', 'start-dev']
     ports:
       - '8000:8000'
@@ -39,7 +37,7 @@ services:
     volumes:
       - .:/src
       - /src/webapp/node_modules
-    command: ['npm', 'run', 'start-dev']
+    command: ['npm', 'run', 'start']
     ports:
       - '3000:3000'
     depends_on:
