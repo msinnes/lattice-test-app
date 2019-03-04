@@ -1,35 +1,26 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import querystring from 'query-string';
 
 import { getMostPopular } from '../../../redux/ducks';
 
-import MovieList from './MovieList';
-import Pagination from './Pagination';
+import MovieList from '../shared-components/MovieList';
 
 class MostPopular extends Component {
   componentDidMount() {
-    const query = querystring.parse(this.props.location.search);
-    this.props.getMostPopular(query);
+    this.props.getMostPopular(this.props.location.search);
   }
 
   render() {
-    console.log(this.props.mostPopular)
     if (this.props.mostPopular.loading || !this.props.mostPopular.loaded) {
       return 'Loading';
     }
 
     return (
       <div className="container">
-        <Pagination
-          currentPage={this.props.mostPopular.data.page}
-          totalPages={this.props.mostPopular.data.total_pages}
-        />
+        <h2>Most Popular</h2>
         <MovieList
-          movies={this.props.mostPopular.data.results}
-        />
-        <Pagination
           currentPage={this.props.mostPopular.data.page}
+          movies={this.props.mostPopular.data.results}
           totalPages={this.props.mostPopular.data.total_pages}
         />
       </div>

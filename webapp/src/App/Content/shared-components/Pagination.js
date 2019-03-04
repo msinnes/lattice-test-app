@@ -17,16 +17,21 @@ const Pagination = ({ currentPage, totalPages, location }) => {
     finish = currentPage + 5;
   }
 
+  function buildQuery(query = {}) {
+    const currentSearch = querystring.parse(location.search);
+    return querystring.stringify({ ...currentSearch, ...query });
+  }
+
   for (let i = start; i <= finish; i++) {
     pageNumbers.push((
       <li className={`page-item${i === currentPage ? ' active' : ''}`} key={`index-${i}`}>
-        <a className="page-link" href={`/?page=${i}`}>{i}</a>
+        <a className="page-link" href={`${location.pathname}?${buildQuery({ page: i })}`}>{i}</a>
       </li>
     ));
   }
   
   function goToPage(number) {
-    window.location.href = `${location.pathname}?${querystring.stringify({ page: number })}`
+    window.location.href = `${location.pathname}?${buildQuery({ page: number })}`
   }
 
   function first() {

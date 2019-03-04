@@ -7,7 +7,7 @@ const URL_BASE = 'https://api.themoviedb.org/3';
 
 const URLS = {
   MOST_POPULAR: `${URL_BASE}/movie/popular`,
-  SEARCH: `${URL_BASE}/movie/search`,
+  SEARCH: `${URL_BASE}/search/movie`,
 };
 
 function buildQueryString(query) {
