@@ -31,6 +31,7 @@ class ViewMovie extends Component {
               <img
                 style={{ width: '100%' }}
                 src="https://img.icons8.com/dotty/80/000000/full-image.png"
+                alt="placeholder"
               />
             )}
           </div>
@@ -63,6 +64,7 @@ class ViewMovie extends Component {
                       <img
                         style={{ width: '100%' }}
                         src='https://img.icons8.com/material-sharp/24/000000/user.png'
+                        alt="placeholder"
                       />
                     )}
                   </div>

@@ -29,6 +29,7 @@ const MovieList = ({ currentPage, movies, totalPages }) => (
                     <img
                       style={{ width: '100%' }}
                       src="https://img.icons8.com/dotty/80/000000/full-image.png"
+                      alt="placeholder"
                     />
                   )}
                 </div>
