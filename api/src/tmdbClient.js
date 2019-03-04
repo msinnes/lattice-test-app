@@ -29,14 +29,14 @@ async function getMovie(id) {
 }
 
 async function getSearchMovies(query) {
-  const cachedValue = await redisClient.get(query.query);
+  const cachedValue = await redisClient.get(query);
   if (cachedValue) {
     console.log('returning cached value');
     return cachedValue;
   }
   const searchQuery = { include_adult: false, ...query };
   const searchResults = await axios.get(`${URLS.SEARCH}?${buildQueryString(searchQuery)}`);
-  redisClient.set(query.query, searchResults.data);
+  redisClient.set(query, searchResults.data);
   return searchResults.data;
 }
 

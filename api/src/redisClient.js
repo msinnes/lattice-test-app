@@ -18,17 +18,18 @@ if (process.env.REDIS_HOST) {
 }
 
 
-async function get(key) {
+async function get(query) {
   if (client) {
-    const value = await client.getAsync(key);
+    const value = await client.getAsync(JSON.stringify(query));
     return JSON.parse(value);
   }
 
   return null;
 }
 
-function set(key, value) {
+function set(query, value) {
   if (client) {
+    const key = JSON.stringify(query);
     console.log(`setting cache for search query: ${key}`)
     client.set(key, JSON.stringify(value), 'EX', 10);
   }
