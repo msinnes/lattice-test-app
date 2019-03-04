@@ -1,7 +1,7 @@
 module.exports = {
   server: {
     port: 8000,
-    host: 'api',
+    host: process.env.API_HOST || 'localhost',
     routes: { cors: { origin: ['*'] }, },
   },
   tmdbClient: {
