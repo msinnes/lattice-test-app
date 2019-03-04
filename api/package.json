@@ -12,8 +12,10 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "bluebird": "^3.5.3",
     "hapi": "^17.6.0",
-    "query-string": "^6.3.0"
+    "query-string": "^6.3.0",
+    "redis": "^2.8.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.3"
