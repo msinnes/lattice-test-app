@@ -7,10 +7,11 @@ const URL_BASE = 'https://api.themoviedb.org/3';
 
 const URLS = {
   MOST_POPULAR: `${URL_BASE}/movie/popular`,
+  MOVIE: `${URL_BASE}/movie`,
   SEARCH: `${URL_BASE}/search/movie`,
 };
 
-function buildQueryString(query) {
+function buildQueryString(query = {}) {
   const builtQuery = { ...clientConfig, ...query };
   return querystring.stringify(builtQuery);
 }
@@ -20,7 +21,13 @@ async function getMostPopular(query = {}) {
   return mostPopular.data;
 }
 
-async function searchMovies(query) {
+async function getMovie(id) {
+  const movie = await axios.get(`${URLS.MOVIE}/${id}?${buildQueryString({ append_to_response: 'credits' })}`);
+  return movie.data;
+
+}
+
+async function getSearchMovies(query) {
   const searchQuery = { include_adult: false, ...query };
   const searchResults = await axios.get(`${URLS.SEARCH}?${buildQueryString(searchQuery)}`);
   return searchResults.data;
@@ -28,5 +35,6 @@ async function searchMovies(query) {
 
 module.exports = {
   getMostPopular,
-  searchMovies,
+  getMovie,
+  getSearchMovies,
 };

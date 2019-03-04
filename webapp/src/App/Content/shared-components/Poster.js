@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Poster = ({ path, movieTitle, width }) => (
   <img
-    style={{ width: '80%' }}
+    style={{ width: '100%' }}
     src={`https://image.tmdb.org/t/p/w${width}${path}`}
     alt={`${movieTitle} Poster`}
   />

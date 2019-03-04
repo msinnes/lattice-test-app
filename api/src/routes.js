@@ -9,6 +9,11 @@ module.exports = [
   {
     method: 'GET',
     path: '/search',
-    handler: async request => tmdbClient.searchMovies(request.query),
+    handler: async request => tmdbClient.getSearchMovies(request.query),
+  },
+  {
+    method: 'GET',
+    path: '/movie/{id}',
+    handler: request => tmdbClient.getMovie(request.params.id),
   },
 ];

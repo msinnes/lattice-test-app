@@ -19,11 +19,13 @@ const MovieList = ({ currentPage, movies, totalPages }) => (
             <a href={`/movie/${movie.id}`}>
               <div className="row">
                 <div className="col-md-2">
-                  <Poster
-                    movieTitle={movie.title}
-                    path={movie.poster_path}
-                    width={500}
-                  />
+                  {movie.poster_path ? (
+                    <Poster
+                      movieTitle={movie.title}
+                      path={movie.poster_path}
+                      width={500}
+                    />
+                  ) : null}
                 </div>
                 <div className="col-md-10">
                   <ul>
