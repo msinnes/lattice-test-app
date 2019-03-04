@@ -25,7 +25,12 @@ const MovieList = ({ currentPage, movies, totalPages }) => (
                       path={movie.poster_path}
                       width={500}
                     />
-                  ) : null}
+                  ) : (
+                    <img
+                      style={{ width: '100%' }}
+                      src="https://img.icons8.com/dotty/80/000000/full-image.png"
+                    />
+                  )}
                 </div>
                 <div className="col-md-10">
                   <ul>
@@ -50,7 +55,7 @@ MovieList.propTypes = {
   currentPage: PropTypes.number.isRequired,
   movies: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    poster_path: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
     release_date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   })),

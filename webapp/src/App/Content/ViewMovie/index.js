@@ -15,17 +15,24 @@ class ViewMovie extends Component {
       return 'Loading';
     }
     const movieData = this.props.movie.data;
-    console.log(movieData);
+
     return (
       <div className="container">
         <h2>{movieData.title}</h2>
         <div className="row">
           <div className="col-md-6">
-            <Poster
-              movieTitle={movieData.title}
-              path={movieData.poster_path}
-              width={500}
-            />
+            {movieData.poster_path ? (
+              <Poster
+                movieTitle={movieData.title}
+                path={movieData.poster_path}
+                width={500}
+              />
+            ) : (
+              <img
+                style={{ width: '100%' }}
+                src="https://img.icons8.com/dotty/80/000000/full-image.png"
+              />
+            )}
           </div>
           <div className="col-md-6">
             <ul>
@@ -48,11 +55,16 @@ class ViewMovie extends Component {
                   <div className="col-md-2">
                     {cast.profile_path ? (
                       <img
-                        style={{ width: '80%' }}
+                        style={{ width: '100%' }}
                         src={`https://image.tmdb.org/t/p/w500${cast.profile_path}`}
                         alt={`${cast.name} Profile`}
                       />
-                    ) : null}
+                    ) : (
+                      <img
+                        style={{ width: '100%' }}
+                        src='https://img.icons8.com/material-sharp/24/000000/user.png'
+                      />
+                    )}
                   </div>
                   <div className="col-md-10">
                     <ul>
